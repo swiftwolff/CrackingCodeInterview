@@ -1,5 +1,3 @@
-import java.util.HashMap;
-
 public class ChOne7 {
 	
 	public static void setMatrixZero(int[][]matrix){
