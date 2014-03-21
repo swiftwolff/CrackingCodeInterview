@@ -2,7 +2,7 @@
 public class ChTwo1 {
 	
 	public ListNode removeDup(ListNode head){
-		public ListNode deleteDuplicates(ListNode head) {
+		
 	        if(head==null||head.next==null){
 			    return head;
 			}
@@ -32,7 +32,7 @@ public class ChTwo1 {
 			return res;
 	        
 	    }
-	}
+
 	
 	public void main(String args[]){
 		
