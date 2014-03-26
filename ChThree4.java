@@ -22,10 +22,13 @@ public class ChThree4 {
 		Stack<Integer> A = new Stack<Integer>();
 		Stack<Integer> B = new Stack<Integer>();
 		Stack<Integer> C = new Stack<Integer>();
-		A.push(1);
-		A.push(2);
 		A.push(3);
+		A.push(2);
+		A.push(1);
 		hanoi(3,A,B,C);
 		System.out.println(C);
+		while(!C.isEmpty()){
+			System.out.println(C.pop());
+		}
 	}
 }
