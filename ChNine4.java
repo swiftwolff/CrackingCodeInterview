@@ -41,26 +41,33 @@ public class ChNine4 {
 		return allsubsets;
 	}
 	
+	public static ArrayList<ArrayList<Integer>> subset(int num){
+		ArrayList<ArrayList<Integer>> res = new ArrayList<ArrayList<Integer>>();
+		ArrayList<Integer> nothing= new ArrayList<Integer>();
+		res.add(nothing);
+		subsetHelper(1,num,res);
+		return res;
+	}
 	
+	public static void subsetHelper(int cur,int stop,ArrayList<ArrayList<Integer>> res){
+		if(cur>stop){
+			return;
+		}	
+		
+		int count =res.size();
+		for(int i=0;i<count;i++){
+			ArrayList<Integer> tmp = new ArrayList<Integer>();
+			tmp.addAll(res.get(i));
+			tmp.add(cur);
+			res.add(tmp);
+		}
+
+		subsetHelper(cur+1,stop,res);
+	}
 	
 	public static void main(String args[]){
-		int[] set= {1,2,3};
-//		for(int i=1;i<=3;i++){
-//			
-//			for(int j=0;j<=set.length-i;j++){
-//				ArrayList<Integer> tmp = new ArrayList<Integer>();
-//				for(int k=j;k<j+i;k++){
-//					tmp.add(set[k]);
-//					System.out.println(set[k]);
-//				}
-//				res.add(tmp);
-//				System.out.println("---------");
-//				
-//			}
-//		}
-		int a = 5;
-		System.out.println(1<<3);
-//		System.out.println(subset(set,set.length));
+		
+		System.out.println(subset(3));
 		
 	}
 }
