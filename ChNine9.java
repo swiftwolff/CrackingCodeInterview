@@ -1,64 +1,45 @@
 import java.util.ArrayList;
 public class ChNine9 {
 	
-	public static ArrayList<char[][]> nQueens(int number){
-		char[][] board = new char[number][number];
-		initalize(board);
-		ArrayList<char[][]> res = new ArrayList<char[][]>();
-		for(int i=0;i<1;i++){
-			for(int j=0;j<board[0].length;j++){
-				board[i][j] = 'Q';
-				System.out.println("Hey");
-				nQueensHelper(board,j,1,res);
-				board[i][j] = '.';
-			}
+	public static ArrayList<int[]> nQueens(int num){
+		ArrayList<int[]> board = new ArrayList<int[]>();
+		int[] combinations = new int[num];
+		for(int i=0;i<num;i++){
+			combinations[0] = i;
+			nQueensHelper(1,combinations,board);
 		}
+		return board;
+	}
+	
+	public static void nQueensHelper(int row, int[] combinations, ArrayList<int[]> board){
 		
-		return res;
-	}
-	
-	public static void initalize(char[][] board){
-		for(int i=0;i<board.length;i++){
-			for(int j=0;j<board[0].length;j++){
-				board[i][j] = '.';
-			}
+		if(row > combinations.length-1){
+			board.add(combinations);
+			return;
 		}
-	}
-	
-	public static void nQueensHelper(char[][] board,int precolumn,int row, ArrayList<char[][]> res){
-		if(row==board.length){
-			System.out.println("Here");
-			res.add(board);
-		}
-		int check = 0;
-		//needs to clean the board
-		for(int i=0;i<row;i++){
-			for(int j=0;j<board[0].length;j++){
-				System.out.println("yo");
-				if(board[i][j]!='Q'){
-					continue;
-				}
-				if(precolumn!=j&&Math.abs(row-j)!=Math.abs(i-precolumn)){
-					board[row][j] = 'Q';
-					nQueensHelper(board,precolumn,row+1,res);
-				}else{
-					check++;
+		int[] tmp = combinations.clone();
+		for(int i=0;i<combinations.length;i++){  //possible columns
+			for(int j=0;j<row;j++){  //prev rows
+				if(tmp[j]==i || Math.abs(j-row)==Math.abs(tmp[j]-i)){
 					break;
 				}
-				if(check==1){
-					check = 0;
-					break;
+				if(j==row-1){
+					tmp[row] = i;
+					nQueensHelper(row+1,tmp,board);
 				}
 			}
-			
 		}
-		
-		
-		return;
 	}
-	
 	
 	public static void main(String args[]){
-		System.out.println(nQueens(3));
+//		int[] res = nQueens(4);
+		for(int[] i:nQueens(4)){
+			for(int j=0;j<i.length;j++){
+				System.out.println(i[j]);
+			}
+			System.out.println();
+		}
+		
+		
 	}
 }
